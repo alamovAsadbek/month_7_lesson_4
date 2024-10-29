@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -14,3 +15,12 @@ def blogs_view(request):
         serializer = BlogModelSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         return Response({"message": "Blog created successfully", "data": serializer.data})
+
+
+@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])
+def blog_detail_view(request, pk):
+    if request.method == 'GET':
+        blog = get_object_or_404(BlogModel, pk=pk)
+        serializer = BlogModelSerializer(blog)
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.data)
