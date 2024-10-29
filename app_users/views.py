@@ -36,3 +36,10 @@ def user_detail_view(request, pk):
         user = UserModel.objects.get(pk=pk)
         user.delete()
         return Response({"message": "User deleted successfully"})
+    elif request.method == 'PATCH':
+        data = request.data
+        user = UserModel.objects.get(pk=pk)
+        serializer = UserModelSerializer(user, data=data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"message": "User updated partially successfully", "data": serializer.data})
