@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -34,7 +35,9 @@ def comment_details_view(request, comment_id):
         serializer.save()
         return Response({"message": "Comment updated successfully.", "data": serializer.data})
     elif request.method == 'DELETE':
-        pass
+        comment = get_object_or_404(CommentModel, pk=comment_id)
+        comment.delete()
+        return Response({"message": "Comment deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
     elif request.method == 'PATCH':
         pass
 
