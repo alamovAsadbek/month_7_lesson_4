@@ -13,6 +13,6 @@ class BlogModel(BaseModel):
         return self.title
 
     class Meta:
-        db_table = 'blog'
+        db_table = 'blogs'
         verbose_name_plural = 'Blogs'
         verbose_name = 'Blog'
