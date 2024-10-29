@@ -25,3 +25,10 @@ def user_detail_view(request, pk):
         serializer = UserModelSerializer(user)
         serializer.is_valid(raise_exception=True)
         return Response(serializer.data)
+    elif request.method == 'PUT':
+        data = request.data
+        user = UserModel.objects.get(pk=pk)
+        serializer = UserModelSerializer(user, data=data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"message": "User updated successfully", "data": serializer.data})
