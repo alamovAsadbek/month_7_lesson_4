@@ -14,3 +14,8 @@ def comments_view(request):
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])
 def comment_details_view(request, pk):
     pass
+
+
+@api_view(['GET'])
+def get_comment_by_blog_id_view(request, blog_id):
+    pass
