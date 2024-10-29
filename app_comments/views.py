@@ -39,7 +39,12 @@ def comment_details_view(request, comment_id):
         comment.delete()
         return Response({"message": "Comment deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
     elif request.method == 'PATCH':
-        pass
+        data = request.data
+        comment = CommentModel.objects.filter(pk=comment_id)
+        serializer = CommentModelSerializer(data=data, instance=comment, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"message": "Comment updated successfully.", "data": serializer.data})
 
 
 @api_view(['GET'])
