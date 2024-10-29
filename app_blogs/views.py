@@ -40,3 +40,8 @@ def blog_detail_view(request, blog_id):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({"message": "Blog updated partially successfully", "data": serializer.data})
+
+
+@api_view(['GET'])
+def get_blog_by_user_id(request, user_id, blog_id):
+    pass
