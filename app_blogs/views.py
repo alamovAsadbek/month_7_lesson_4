@@ -30,3 +30,7 @@ def blog_detail_view(request, pk):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({"message": "Blog updated successfully", "data": serializer.data})
+    elif request.method == 'DELETE':
+        blog = get_object_or_404(BlogModel, pk=pk)
+        blog.delete()
+        return Response({"message": "Blog deleted successfully"})
