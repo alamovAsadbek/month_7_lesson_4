@@ -27,7 +27,12 @@ def comment_details_view(request, comment_id):
         serializer.is_valid(raise_exception=True)
         return Response(serializer.data, status.HTTP_200_OK)
     elif request.method == 'PUT':
-        pass
+        data = request.data
+        comment = CommentModel.objects.filter(pk=comment_id)
+        serializer = CommentModelSerializer(data=data, instance=comment, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"message": "Comment updated successfully.", "data": serializer.data})
     elif request.method == 'DELETE':
         pass
     elif request.method == 'PATCH':
