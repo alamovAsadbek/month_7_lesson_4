@@ -24,3 +24,9 @@ def blog_detail_view(request, pk):
         serializer = BlogModelSerializer(blog)
         serializer.is_valid(raise_exception=True)
         return Response(serializer.data)
+    elif request.method == 'PUT':
+        blog = get_object_or_404(BlogModel, pk=pk)
+        serializer = BlogModelSerializer(blog, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"message": "Blog updated successfully", "data": serializer.data})
