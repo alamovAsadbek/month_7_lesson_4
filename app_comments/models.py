@@ -8,8 +8,8 @@ from common.models import BaseModel
 
 class CommentModel(BaseModel):
     content = models.TextField()
-    user = serializers.PrimaryKeyRelatedField(queryset='UserModel.objects.all()', required=True)
-    post = serializers.PrimaryKeyRelatedField(queryset='BlogModel.objects.all()', required=True)
+    user = serializers.PrimaryKeyRelatedField(queryset=UserModel.objects.all(), required=True)
+    post = serializers.PrimaryKeyRelatedField(queryset=BlogModel.objects.all(), required=True)
 
     class Meta:
         db_table = 'app_comments'

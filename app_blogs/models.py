@@ -8,7 +8,7 @@ from common.models import BaseModel
 class BlogModel(BaseModel):
     title = models.CharField(max_length=200)
     content = models.TextField()
-    user = serializers.PrimaryKeyRelatedField(queryset=UserModel.objects.all())
+    user = serializers.PrimaryKeyRelatedField(queryset=UserModel.objects.all(), required=True)
 
     def __str__(self):
         return self.title
