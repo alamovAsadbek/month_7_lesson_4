@@ -50,4 +50,7 @@ def comment_details_view(request, comment_id):
 @api_view(['GET'])
 def get_comment_by_blog_id_view(request, blog_id, user_id):
     if request.method == 'GET':
-        pass
+        comment = CommentModel.objects.filter(post=blog_id, user=user_id)
+        serializer = CommentModelSerializer(comment)
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
