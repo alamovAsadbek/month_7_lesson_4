@@ -9,3 +9,8 @@ def comments_view(request):
     elif request.method == 'POST':
         # Create a new comment
         pass
+
+
+@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])
+def comment_details_view(request, pk):
+    pass
