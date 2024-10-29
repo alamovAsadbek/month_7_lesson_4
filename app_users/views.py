@@ -1,6 +1,13 @@
-# Create your views here.
+from rest_framework.response import Response
+
+from .serializer import *
+
+
 def user_view(request):
     if request.method == 'GET':
-        pass
+        users = UserModel.objects.all()
+        serializer = UserModelSerializer(users, many=True)
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.data)
     elif request.method == 'POST':
         pass
