@@ -5,7 +5,7 @@ from .models import *
 def comments_view(request):
     if request.method == 'GET':
         comment=CommentModel.objects.all()
-
+        serializer=CommentSerializer(comment, many=True)
     elif request.method == 'POST':
         # Create a new comment
         pass
