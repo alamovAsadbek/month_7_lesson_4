@@ -34,3 +34,9 @@ def blog_detail_view(request, pk):
         blog = get_object_or_404(BlogModel, pk=pk)
         blog.delete()
         return Response({"message": "Blog deleted successfully"})
+    elif request.method == 'PATCH':
+        blog = get_object_or_404(BlogModel, pk=pk)
+        serializer = BlogModelSerializer(blog, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"message": "Blog updated partially successfully", "data": serializer.data})
