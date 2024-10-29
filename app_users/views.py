@@ -19,7 +19,7 @@ def user_view(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])
-def user_detail_view(request, pk):
+def user_detail_view(request, user_id):
     if request.method == 'GET':
         user = UserModel.objects.filter(pk=pk)
         serializer = UserModelSerializer(user)

@@ -18,7 +18,7 @@ def blogs_view(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])
-def blog_detail_view(request, pk):
+def blog_detail_view(request, blog_id):
     if request.method == 'GET':
         blog = get_object_or_404(BlogModel, pk=pk)
         serializer = BlogModelSerializer(blog)
