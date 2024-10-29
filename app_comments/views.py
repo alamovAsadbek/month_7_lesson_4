@@ -12,7 +12,7 @@ def comments_view(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])
-def comment_details_view(request, pk):
+def comment_details_view(request, comment_id):
     pass
 
 
