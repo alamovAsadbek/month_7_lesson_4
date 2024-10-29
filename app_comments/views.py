@@ -17,5 +17,5 @@ def comment_details_view(request, comment_id):
 
 
 @api_view(['GET'])
-def get_comment_by_blog_id_view(request, blog_id):
+def get_comment_by_blog_id_view(request, blog_id, user_id):
     pass
