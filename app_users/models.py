@@ -10,5 +10,6 @@ class UserModel(models.Model):
         return self.first_name + " " + self.last_name
 
     class Meta:
+        db_table = "users"
         verbose_name_plural = "Users"
         verbose_name = "User"
