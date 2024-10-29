@@ -22,7 +22,10 @@ def comments_view(request):
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])
 def comment_details_view(request, comment_id):
     if request.method == 'GET':
-        pass
+        comment = CommentModel.objects.filter(pk=comment_id)
+        serializer = CommentModelSerializer(data=comment)
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.data, status.HTTP_200_OK)
     elif request.method == 'PUT':
         pass
     elif request.method == 'DELETE':
