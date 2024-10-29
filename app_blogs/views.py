@@ -44,4 +44,8 @@ def blog_detail_view(request, blog_id):
 
 @api_view(['GET'])
 def get_blog_by_user_id(request, user_id, blog_id):
-    pass
+    if request.method == 'GET':
+        blog = get_object_or_404(BlogModel, pk=blog_id, user=user_id)
+        serializer = BlogModelSerializer(blog)
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.data)
