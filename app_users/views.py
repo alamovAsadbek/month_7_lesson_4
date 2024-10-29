@@ -16,3 +16,12 @@ def user_view(request):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({"message": "User created successfully", "data": serializer.data})
+
+
+@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])
+def user_detail_view(request, pk):
+    if request.method == 'GET':
+        user = UserModel.objects.filter(pk=pk)
+        serializer = UserModelSerializer(user)
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.data)
