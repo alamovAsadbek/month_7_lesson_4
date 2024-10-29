@@ -10,4 +10,7 @@ def user_view(request):
         serializer.is_valid(raise_exception=True)
         return Response(serializer.data)
     elif request.method == 'POST':
-        pass
+        serializer = UserModelSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"message": "User created successfully", "data": serializer.data})
