@@ -32,3 +32,7 @@ def user_detail_view(request, pk):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({"message": "User updated successfully", "data": serializer.data})
+    elif request.method == 'DELETE':
+        user = UserModel.objects.get(pk=pk)
+        user.delete()
+        return Response({"message": "User deleted successfully"})
